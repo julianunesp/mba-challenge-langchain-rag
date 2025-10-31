@@ -33,8 +33,8 @@ def main():
 
     try:
         response = chain.invoke({
-            "contexto": context,
-            "pergunta": question
+            "resultados concatenados do banco de dados": context,
+            "pergunta do usuário": question
         })
 
         print(f"Resposta: {response.content}")

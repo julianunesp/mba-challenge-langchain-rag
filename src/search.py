@@ -12,7 +12,7 @@ for k in ("OPENAI_API_KEY", "PGVECTOR_URL","PGVECTOR_COLLECTION"):
 
 PROMPT_TEMPLATE = """
 CONTEXTO:
-{contexto}
+{resultados concatenados do banco de dados}
 
 REGRAS:
 - Responda somente com base no CONTEXTO.
@@ -32,7 +32,7 @@ Pergunta: "Você acha isso bom ou ruim?"
 Resposta: "Não tenho informações necessárias para responder sua pergunta."
 
 PERGUNTA DO USUÁRIO:
-{pergunta}
+{pergunta do usuário}
 
 RESPONDA A "PERGUNTA DO USUÁRIO"
 """
@@ -48,7 +48,7 @@ def search_prompt(question=None):
         use_jsonb=True,
     )
 
-    results = store.similarity_search_with_score(question, k=3)
+    results = store.similarity_search_with_score(question, k=10)
     return results
 
 
